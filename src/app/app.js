@@ -34,7 +34,14 @@
     });
 
     application.OtherView = Marionette.LayoutView.extend({
-        template: '#other-template'
+        template: '#other-template',
+        events: {
+            'click p': 'alertPhoneNumber'
+        },
+
+        alertPhoneNumber: function () {
+            alert(this.model.escape('phoneNumber'));
+        }
     });
 
     application.ItemView = Marionette.ItemView.extend({
