@@ -7,6 +7,10 @@ application.on('start', function () {
 
     if (Backbone.history) {
         Backbone.history.start();
+
+        if (Backbone.history.fragment === '') {
+            application.trigger('contacts:list');
+        }
     }
 });
 
