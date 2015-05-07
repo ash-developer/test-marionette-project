@@ -10,6 +10,13 @@
         }
     });
 
+    application.Contacts = Backbone.Collection.extend({
+        model: application.ContactModel,
+        comparator: function (model) {
+            return model.escape('firstName') + ' ' + model.escape('lastName');
+        }
+    });
+
     application.LayoutView = Marionette.LayoutView.extend({
         el: '#content',
         regions: {
@@ -18,25 +25,12 @@
         }
     });
 
-    application.ListView = Marionette.LayoutView.extend({
-        tagName: 'ul',
-        className: 'list',
-        template: function () {
-            var html = '';
-
-            for (var i = 0; i < 10; i++) {
-                var item = new application.ItemView();
-                html += item.render().$el.html();
-            }
-
-            return html;
-        }
-    });
-
-    application.OtherView = Marionette.LayoutView.extend({
-        template: '#other-template',
+    application.ItemView = Marionette.ItemView.extend({
+        tagName: 'li',
+        className: 'list-item',
+        template: '#list-item-template',
         events: {
-            'click p': 'alertPhoneNumber'
+            'click li': 'alertPhoneNumber'
         },
 
         alertPhoneNumber: function () {
@@ -44,9 +38,13 @@
         }
     });
 
-    application.ItemView = Marionette.ItemView.extend({
-        className: 'list-item',
-        template: '#list-item-template'
+    application.ListView = Marionette.CollectionView.extend({
+        tagName: 'ul',
+        childView: application.ItemView
+    });
+
+    application.OtherView = Marionette.LayoutView.extend({
+        template: '#other-template'
     });
 
     application.on('before:start', function () {
@@ -56,15 +54,26 @@
     application.on('start', function () {
         console.log('Marionette application was started!');
 
-        var user = new application.ContactModel({
-            firstName: 'First',
-            lastName: 'Last'
-        });
+        var contacts = new application.Contacts([
+            {
+                firstName: 'First3',
+                lastName: 'Last2'
+            },
+            {
+                firstName: 'First3',
+                lastName: 'Last1'
+            },
+            {
+                firstName: 'First2',
+                lastName: 'Last2',
+                phoneNumber: '123'
+            }
+        ]);
 
-        var list = new application.ListView(),
-            other = new application.OtherView({
-                model: user
-            });
+        var list = new application.ListView({
+                collection: contacts
+            }),
+            other = new application.OtherView();
 
         application.layout.main.show(list);
         application.layout.other.show(other);
