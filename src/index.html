@@ -3,28 +3,47 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 
-<div id="content">
-    <div id="main-region">main region placeholder</div>
-    <div id="other-region">other region placeholder</div>
-</div>
+<div id="root"></div>
 
-<script type="text/template" id="list-item-template">
-    <%- firstName %> <%- lastName %>
+<script id="application-layout-template" type="text/html">
+    <div class="container">
+        <h1>header</h1>
+
+        <div class="row">
+            <div class="col-xs-3">
+                <ul>
+                    <li><a href="#list">list view</a></li>
+                    <li><a href="#list/details">form</a></li>
+                    <li><a href="#widgets">widgets</a></li>
+                </ul>
+            </div>
+            <div id="content" class="col-xs-9"></div>
+        </div>
+    </div>
 </script>
-
-<script type="text/template" id="other-template">
-    <p>other block</p>
+<script id="list-template" type="text/html">
+    <div>list</div>
+</script>
+<script id="list-details-template" type="text/html">
+    <div>details</div>
 </script>
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/backbone/backbone.js"></script>
 <script src="bower_components/marionette/lib/backbone.marionette.js"></script>
+
 <script src="app/app.js"></script>
-<script src="app/modules/test/test.js"></script>
+<script src="app/views/root-layout.js"></script>
+<script src="app/views/application-layout.js"></script>
+<script src="app/modules/list/test.js"></script>
+<script src="app/modules/list/views/list.js"></script>
+<script src="app/modules/list/views/details.js"></script>
 <script src="app/bootstrap.js"></script>
 
 </body>
