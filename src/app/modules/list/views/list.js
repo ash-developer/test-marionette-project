@@ -1,3 +1,5 @@
-application.TestModule.ListView = Marionette.ItemView.extend({
-    template: '#list-template'
+application.TestModule.ListView = Marionette.CollectionView.extend({
+    childView: Marionette.ItemView.extend({
+        template: '#list-template'
+    })
 });
