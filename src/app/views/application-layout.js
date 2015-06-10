@@ -1,3 +1,5 @@
+'use strict';
+
 var ApplicationLayoutView = Backbone.Marionette.LayoutView.extend({
     template: '#application-layout-template',
 
