@@ -1,5 +1,7 @@
-application.TestModule.ListView = Marionette.CollectionView.extend({
+application.TestModule.ListView = Marionette.CompositeView.extend({
+    template: '#list-template',
+    childViewContainer: '.content',
     childView: Marionette.ItemView.extend({
-        template: '#list-template'
+        template: '#item-template'
     })
 });
