@@ -21,8 +21,8 @@ loading...
             <div class="col-xs-3">
                 <ul>
                     <li><a href="#list">list view</a></li>
-                    <li><a href="#list/details/1">form</a></li>
-                    <li><a href="#widgets">widgets</a></li>
+                    <li><a href="#list/details/1">details view</a></li>
+                    <li><a href="#form">form</a></li>
                 </ul>
             </div>
             <div id="content" class="col-xs-9"></div>
@@ -31,18 +31,46 @@ loading...
 </script>
 <script id="list-template" type="text/html">
     <div>
-        <strong>list header</strong>
-        <div class="content"></div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+            </tr>
+            </thead>
+            <tbody class="content">
+            </tbody>
+        </table>
     </div>
 </script>
 <script id="item-template" type="text/html">
-    <div><%= title %></div>
+    <td><%= id %></td>
+    <td><a href="#list/details/1"><%= title %></a></td>
 </script>
 <script id="list-details-template" type="text/html">
     <dl class="dl-horizontal">
         <dt>id</dt><dd><%= id %></dd>
         <dt>title</dt><dd><%= title %></dd>
     </dl>
+</script>
+<script id="form-template" type="text/html">
+    <form novalidate>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="<%= email %>">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+
+    </form>
+
+    <hr>
+
+    Your email <span class="email-display"></span><br>
+    Your password <span class="password-display"></span>
 </script>
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -54,10 +82,16 @@ loading...
 <script src="app/views/loader.js"></script>
 <script src="app/views/root-layout.js"></script>
 <script src="app/views/application-layout.js"></script>
+
 <script src="app/modules/list/test.js"></script>
 <script src="app/modules/list/views/list.js"></script>
 <script src="app/modules/list/views/details.js"></script>
 <script src="app/modules/list/models/item.js"></script>
+
+<script src="app/modules/form/form.js"></script>
+<script src="app/modules/form/models/model.js"></script>
+<script src="app/modules/form/views/form.js"></script>
+
 <script src="app/bootstrap.js"></script>
 
 </body>
