@@ -1,7 +1,6 @@
 'use strict';
 
 application.FormModule.FormView = Marionette.ItemView.extend({
-    model: new application.FormModule.Model({}),
     template: '#form-template',
     ui: {
         email: '#exampleInputEmail1',

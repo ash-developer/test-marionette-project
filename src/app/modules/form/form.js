@@ -8,7 +8,9 @@ application.FormModule = application.module('FormModule', function (FormModule, 
         },
         controller: {
             index: function() {
-                var form = new application.FormModule.FormView({});
+                var form = new application.FormModule.FormView({
+                    model: new application.FormModule.Model({})
+                });
                 application.theme.getRegion('content').show(form);
             }
         }
